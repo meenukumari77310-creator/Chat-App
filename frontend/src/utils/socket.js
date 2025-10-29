@@ -1,13 +1,9 @@
+// frontend/utils/socket.js
 import { io } from "socket.io-client";
 
-const SOCKET_URL = "http://localhost:5000";
+const SOCKET_URL = "https://chat-app-backend-wy3h.onrender.com"; // ✅ Render backend
 
-// Create socket only once
 export const socket = io(SOCKET_URL, {
-  withCredentials: true, // important if you use cookies/sessions
-  autoConnect: false,    // don’t auto connect immediately
+  withCredentials: true,
+  autoConnect: false,
 });
-
-// later in your app (e.g. in ChatPage useEffect):
-// socket.connect();
-// socket.emit("join_room", currentUser._id);

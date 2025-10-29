@@ -9,12 +9,6 @@ const userSchema = new mongoose.Schema(
       minlength: [3, "Name must be at least 3 characters long"],
       maxlength: 50,
     },
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-    },
     email: {
       type: String,
       required: [true, "Please provide email"],
@@ -38,7 +32,7 @@ const userSchema = new mongoose.Schema(
     },
     profileImage: {
       type: String,
-      default: "/default-avatar.png", // fallback
+      default: "/default-avatar.png",
     },
     about: {
       type: String,
