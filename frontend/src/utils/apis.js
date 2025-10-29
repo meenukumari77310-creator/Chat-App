@@ -1,7 +1,7 @@
 // frontend/utils/apis.js
 export const apis = () => {
-  const local = "https://chat-app-backend-wy3h.onrender.com";
-  const prefix = `${local}/api`; // ✅ matches backend
+  const local = "https://chat-app-backend-dk74.onrender.com"; // ✅ Correct backend
+  const prefix = `${local}/api`; // ✅ Matches backend route prefix
 
   const list = {
     registerUser: `${prefix}/register`,
@@ -23,12 +23,10 @@ export const apis = () => {
     sendMessage: `${prefix}/chat/message`,
     getMessages: (chatId) => `${prefix}/chat/message/${chatId}`,
 
-    // ✅ Users
     getAllUsers: `${prefix}/get-user`,
 
-    // ✅ Profile
-    getProfile: `${prefix}/profile`, // GET profile
-    updateProfile: `${prefix}/profile/update`, // PUT profile update (with file)
+    getProfile: `${prefix}/profile`,
+    updateProfile: `${prefix}/profile/update`,
 
     addContact: `${prefix}/contacts/add`,
     getContacts: `${prefix}/contacts`,
