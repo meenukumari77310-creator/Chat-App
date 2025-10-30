@@ -42,6 +42,11 @@ export { io };
 // Routes
 app.use("/api", userRoutes);
 
+app.get("/", (req, res) => {
+  res.send("✅ Chat App Backend is running");
+});
+
+
 // Error handler
 app.use((err, req, res, next) => {
   console.error(err);
