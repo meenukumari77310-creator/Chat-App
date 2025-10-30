@@ -43,11 +43,12 @@ export const login = async (req, res, next) => {
 
     res.cookie("token", accessToken, {
       httpOnly: true,
-      secure: true,
-      sameSite: "None",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
       path: "/",
     });
+
 
     res.status(200).json({
       message: "Login successful",
