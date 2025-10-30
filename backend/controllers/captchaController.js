@@ -10,11 +10,12 @@ export const getCaptcha = (req, res) => {
 
   res.cookie("captcha", captcha.text, {
     httpOnly: true,
-    maxAge: 5 * 60 * 1000,
     secure: true,
     sameSite: "None",
-    domain: ".onrender.com"  // ✅ IMPORTANT FOR RENDER
+    maxAge: 5 * 60 * 1000,
+    path: "/",
   });
+
 
 
 
