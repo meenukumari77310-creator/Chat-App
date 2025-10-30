@@ -1,7 +1,8 @@
 // frontend/utils/socket.js
 import { io } from "socket.io-client";
 
-const SOCKET_URL = "https://chat-app-backend-wy3h.onrender.com";
+const SOCKET_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 export const socket = io(SOCKET_URL, {
   withCredentials: true,

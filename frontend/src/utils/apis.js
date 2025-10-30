@@ -1,8 +1,7 @@
 // frontend/utils/apis.js
 export const apis = () => {
-  const local = "https://chat-app-backend-wy3h.onrender.com";
-  const prefix = `${local}/api`;
-
+  const base = process.env.REACT_APP_API_URL || "http://localhost:5000"; // fallback for local
+  const prefix = `${base}/api`;
 
   const list = {
     registerUser: `${prefix}/register`,
