@@ -12,9 +12,8 @@ import { getFirestore, collection } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBIT-AwbJlN5Jv21smZ7MdY_a5OHWl1AhI",
-  authDomain: process.env.NODE_ENV === "production"
-    ? "chat-app-frontend-ogk2.onrender.com"
-    : "authentication-4a424.firebaseapp.com",
+  authDomain: "authentication-4a424.firebaseapp.com", // ✅ fixed
+
   projectId: "authentication-4a424",
   storageBucket: "authentication-4a424.appspot.com",
   messagingSenderId: "962176427076",
