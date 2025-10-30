@@ -10,13 +10,10 @@ export const getCaptcha = (req, res) => {
 
   res.cookie("captcha", captcha.text, {
     httpOnly: true,
-    secure: true,
-    sameSite: "None",
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
     maxAge: 5 * 60 * 1000,
-    path: "/",
   });
-
-
 
 
   res.type("svg");

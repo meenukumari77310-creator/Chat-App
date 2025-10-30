@@ -96,9 +96,8 @@ export const Register = () => {
     if (!email || !name) return toast.error("Enter your name and email first");
     try {
       await sendSignInLinkToEmail(auth, email, {
-        url: `http://localhost:3000/finishSignIn?email=${encodeURIComponent(
-          email
-        )}&name=${encodeURIComponent(name)}`,
+        url: `${window.location.origin}/finishSignIn?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`,
+
         handleCodeInApp: true,
       });
       setUserDetails({ email, name });

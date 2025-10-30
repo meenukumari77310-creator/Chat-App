@@ -1,11 +1,20 @@
 // src/firebase.js
 import { initializeApp } from "firebase/app";
-import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  sendSignInLinkToEmail,
+  isSignInWithEmailLink,
+  signInWithEmailLink,
+  GoogleAuthProvider,
+  signInWithPopup
+} from "firebase/auth";
 import { getFirestore, collection } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBIT-AwbJlN5Jv21smZ7MdY_a5OHWl1AhI",
-  authDomain: "authentication-4a424.firebaseapp.com",
+  authDomain: process.env.NODE_ENV === "production"
+    ? "chat-app-frontend-ogk2.onrender.com"
+    : "authentication-4a424.firebaseapp.com",
   projectId: "authentication-4a424",
   storageBucket: "authentication-4a424.appspot.com",
   messagingSenderId: "962176427076",
@@ -13,14 +22,10 @@ const firebaseConfig = {
   measurementId: "G-WZ1C6CFJT6",
 };
 
-// Initialize app
 const app = initializeApp(firebaseConfig);
-
-// Services
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Auth
 const googleProvider = new GoogleAuthProvider();
 const usersCollection = collection(db, "Users");
 
