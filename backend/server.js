@@ -14,15 +14,13 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000", // local dev
-      "https://chat-app-frontend-ogk2.onrender.com", // your deployed frontend
-    ],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://chat-app-frontend-ogk2.onrender.com"
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
@@ -32,10 +30,10 @@ const io = new Server(server, {
   cors: {
     origin: [
       "http://localhost:3000",
-      "https://chat-app-frontend-ogk2.onrender.com",
+      "https://chat-app-frontend-ogk2.onrender.com"
     ],
-    credentials: true,
-  },
+    credentials: true
+  }
 });
 
 // ✅ Export io for controllers
