@@ -9,10 +9,10 @@ export const login = async (req, res, next) => {
 
 
   try {
-     if (!captchaInput || !captchaCookie || captchaInput.toLowerCase() !== captchaCookie.toLowerCase()) {
+    if (!captchaInput || !captchaCookie || captchaInput.toLowerCase() !== captchaCookie.toLowerCase()) {
       return res.status(400).json({ message: "CAPTCHA verification failed" });
     }
-    
+
     const formattedEmail = email.toLowerCase();
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
     if (!passwordRegex.test(password)) {
@@ -43,8 +43,8 @@ export const login = async (req, res, next) => {
 
     res.cookie("token", accessToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: "Lax",
+      secure: true,
+      sameSite: "None",
       maxAge: 7 * 24 * 60 * 60 * 1000,
       path: "/",
     });

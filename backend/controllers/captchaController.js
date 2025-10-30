@@ -10,9 +10,12 @@ export const getCaptcha = (req, res) => {
 
   res.cookie("captcha", captcha.text, {
     httpOnly: true,
-    maxAge: 5 * 60 * 1000, // 5 minutes
-    sameSite: "Strict",
+    maxAge: 5 * 60 * 1000,
+    secure: true,
+    sameSite: "None",
+    path: "/",
   });
+
 
   res.type("svg");
   res.status(200).send(captcha.data);
