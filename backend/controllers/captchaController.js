@@ -13,8 +13,9 @@ export const getCaptcha = (req, res) => {
     maxAge: 5 * 60 * 1000,
     secure: true,
     sameSite: "None",
-    path: "/",
+    domain: ".onrender.com"  // ✅ IMPORTANT FOR RENDER
   });
+
 
 
   res.type("svg");
