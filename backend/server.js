@@ -19,8 +19,10 @@ app.use(cors({
     "http://localhost:3000",
     "https://chat-app-frontend-ogk2.onrender.com"
   ],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
