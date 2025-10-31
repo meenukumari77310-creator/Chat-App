@@ -12,14 +12,14 @@ import { getFirestore, collection } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBIT-AwbJlN5Jv21smZ7MdY_a5OHWl1AhI",
-  authDomain: "authentication-4a424.firebaseapp.com", // ✅ fixed
-
+  authDomain: "authentication-4a424.firebaseapp.com",
   projectId: "authentication-4a424",
   storageBucket: "authentication-4a424.appspot.com",
   messagingSenderId: "962176427076",
   appId: "1:962176427076:web:9033a12b14660b14b48811",
   measurementId: "G-WZ1C6CFJT6",
 };
+
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
