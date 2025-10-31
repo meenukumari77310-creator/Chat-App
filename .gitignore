@@ -13,7 +13,6 @@ frontend/.env
 
 
 # Build and dist
-frontend/build/
 backend/dist/
 
 # System and IDE files
