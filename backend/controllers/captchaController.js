@@ -10,8 +10,8 @@ export const getCaptcha = (req, res) => {
 
   res.cookie("captcha", captcha.text, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    secure: true,
+    sameSite: None,
     maxAge: 5 * 60 * 1000,
   });
 
