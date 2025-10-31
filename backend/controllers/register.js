@@ -1,12 +1,6 @@
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 
-function generateUsername(name) {
-  return (
-    name.toLowerCase().replace(/\s+/g, "") +
-    Math.floor(1000 + Math.random() * 9000)
-  );
-}
 
 export const register = async (req, res, next) => {
   const { name, email, password, confirmPassword, captchaInput } = req.body;
@@ -45,14 +39,10 @@ console.log("Captcha Input:", captchaInput);
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    let username = generateUsername(formattedName);
-    while (await User.findOne({ username })) {
-      username = generateUsername(formattedName);
-    }
+    
 
     const newUser = new User({
       name: formattedName,
-      username,
       email: formattedEmail,
       password: hashedPassword,
       platform: "manual",
