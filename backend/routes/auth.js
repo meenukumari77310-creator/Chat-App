@@ -50,11 +50,13 @@ router.get("/user", auth, getUserInfo);
 router.post("/logout", auth, (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "Lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: true,       // ✅
+    sameSite: "None",   // ✅
+    path: "/"           // ✅
   });
   res.status(200).json({ message: "Logged out successfully" });
 });
+
 router.post("/logout-all", auth, logoutAllDevices);
 
 // Chat & Message routes
