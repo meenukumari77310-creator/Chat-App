@@ -8,15 +8,19 @@ export const getCaptcha = (req, res) => {
     background: "#f0f0f0",
   });
 
+  const isProduction = process.env.NODE_ENV === "production";
+
   res.cookie("captcha", captcha.text, {
     httpOnly: true,
-    secure: true, // required on Render
-    sameSite: "None", // ✅ MUST be a string
-    path: "/",        // ✅ required for cross-site cookies
+    secure: isProduction, 
+    sameSite: isProduction ? "None" : "Lax",
+    path: "/",
     maxAge: 5 * 60 * 1000,
   });
+   console.log("Generated CAPTCHA:", captcha.text);
+
 
   res.type("svg");
   res.status(200).send(captcha.data);
-  
+
 };
