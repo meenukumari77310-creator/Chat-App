@@ -1,6 +1,5 @@
 {
-  "clean_urls": true,
-  "rewrites": [
-    { "source": "**", "destination": "/index.html" }
-  ]
+  "routes": {
+    "/**": "index.html"
+  }
 }
