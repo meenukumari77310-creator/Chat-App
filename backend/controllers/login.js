@@ -43,8 +43,9 @@ export const login = async (req, res, next) => {
 
     res.cookie("token", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      
+    secure: true, // required on Render
+    sameSite: "None", // ✅ MUST be a string
       maxAge: 7 * 24 * 60 * 60 * 1000,
       path: "/",
     });
