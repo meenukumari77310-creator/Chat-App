@@ -55,9 +55,7 @@ const Login = () => {
   const fetchCaptcha = async () => {
     setRefreshing(true);
     try {
-      const res = await fetch(apis().captcha + "?type=login", {
-        credentials: "include",
-      });
+      const res = await fetch(apis().captcha, { credentials: "include" });
       const svg = await res.text();
       setCaptchaSvg(svg);
     } catch (err) {

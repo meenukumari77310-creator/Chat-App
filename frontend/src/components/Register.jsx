@@ -76,9 +76,7 @@ export const Register = () => {
   const fetchCaptcha = async () => {
     setRefreshing(true);
     try {
-      const res = await fetch(apis().captcha + "?type=register", {
-        credentials: "include",
-      });
+      const res = await fetch(apis().captcha, { credentials: "include" });
       const svg = await res.text();
       setCaptchaSvg(svg);
       setCaptchaInput(""); // clear input when refreshed
