@@ -10,8 +10,8 @@ function generateUsername(name) {
 
 export const register = async (req, res, next) => {
   const { name, email, password, confirmPassword, captchaInput } = req.body;
-  const captchaCookie = req.cookies.captcha;
-
+const captchaCookie = req.cookies.captcha_register;
+ 
   try {
     // ✅ CAPTCHA check
     if (!captchaInput || !captchaCookie || captchaInput.toLowerCase() !== captchaCookie.toLowerCase()) {

@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 export const login = async (req, res, next) => {
   const { email, password, captchaInput } = req.body;
-  const captchaCookie = req.cookies.captcha;
+const captchaCookie = req.cookies.captcha_login;
 
 
   try {

@@ -1,6 +1,12 @@
 import svgCaptcha from "svg-captcha";
 
 export const getCaptcha = (req, res) => {
+  const { type } = req.query; // login or register
+
+  if (!type || !["login", "register"].includes(type)) {
+    return res.status(400).json({ message: "Captcha type required" });
+  }
+
   const captcha = svgCaptcha.create({
     size: 6,
     noise: 2,
@@ -8,14 +14,15 @@ export const getCaptcha = (req, res) => {
     background: "#f0f0f0",
   });
 
-  res.cookie("captcha", captcha.text, {
+  const cookieName = type === "login" ? "captcha_login" : "captcha_register";
+
+  res.cookie(cookieName, captcha.text, {
     httpOnly: true,
-    secure: true, // required on Render
-    sameSite: "None", // ✅ MUST be a string
-    path: "/",        // ✅ required for cross-site cookies
+    secure: true,
+    sameSite: "None",
+    path: "/",
     maxAge: 5 * 60 * 1000,
   });
 
-  res.type("svg");
-  res.status(200).send(captcha.data);
+  res.type("svg").status(200).send(captcha.data);
 };
