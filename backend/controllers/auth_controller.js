@@ -36,8 +36,9 @@ export const loginViaFirebase = async (req, res, next) => {
     // Set cookie with token
     res.cookie("token", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // ✅
-      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅
+      secure: true, // required on Render
+      sameSite: "None",
+
       maxAge: 7 * 24 * 60 * 60 * 1000,
       path: "/",
     });

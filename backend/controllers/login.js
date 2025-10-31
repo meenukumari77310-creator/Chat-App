@@ -48,7 +48,7 @@ console.log("Captcha Input:", captchaInput);
       httpOnly: true,
       
     secure: true, // required on Render
-    sameSite: "None", // ✅ MUST be a string
+    sameSite: "None",
       maxAge: 7 * 24 * 60 * 60 * 1000,
       path: "/",
     });
