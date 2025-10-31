@@ -10,6 +10,8 @@ import userRoutes from "./routes/auth.js";
 dotenv.config();
 
 const app = express();
+app.set("trust proxy", 1);
+
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -20,8 +22,10 @@ app.use(cors({
     "https://chat-app-frontend-ogk2.onrender.com"
   ],
   credentials: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 
 
 app.use(express.json());

@@ -12,6 +12,10 @@ export const register = async (req, res, next) => {
   const { name, email, password, confirmPassword, captchaInput } = req.body;
   const captchaCookie = req.cookies.captcha;
 
+  console.log("Captcha Cookie:", req.cookies.captcha);
+console.log("Captcha Input:", captchaInput);
+
+
   try {
     // ✅ CAPTCHA check
     if (!captchaInput || !captchaCookie || captchaInput.toLowerCase() !== captchaCookie.toLowerCase()) {
