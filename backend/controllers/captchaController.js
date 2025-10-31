@@ -10,12 +10,11 @@ export const getCaptcha = (req, res) => {
 
   res.cookie("captcha", captcha.text, {
     httpOnly: true,
-    secure: true,
-    sameSite: None,
+    secure: true, // required on Render
+    sameSite: "None", // ✅ MUST be a string
+    path: "/",        // ✅ required for cross-site cookies
     maxAge: 5 * 60 * 1000,
   });
-
-
 
   res.type("svg");
   res.status(200).send(captcha.data);
