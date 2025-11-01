@@ -93,19 +93,20 @@ export const Register = () => {
   }, []);
 
   const sendMagicLink = async () => {
-    if (!email || !name) return toast.error("Enter your name and email first");
-    try {
-      await sendSignInLinkToEmail(auth, email, {
-        url: `${window.location.origin}/finishSignIn?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`,
+      if (!email || !name) return toast.error("Enter your name and email first");
+      try {
+        await sendSignInLinkToEmail(auth, email, {
+          url: `https://chat-app-frontend-ogk2.onrender.com/#/finishSignIn?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`,
 
-        handleCodeInApp: true,
-      });
-      setUserDetails({ email, name });
-      toast.success("Magic link sent! Check your email.");
-    } catch (error) {
-      toast.error("Failed to send magic link: " + error.message);
-    }
-  };
+          handleCodeInApp: true,
+        });
+        setUserDetails({ email, name });
+        toast.success("Magic link sent! Check your email.");
+      } catch (error) {
+        toast.error("Failed to send magic link: " + error.message);
+      }
+    };
+  
 
   const handleGoogleLogin = async () => {
     try {
