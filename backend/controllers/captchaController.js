@@ -14,16 +14,10 @@ export const getCaptcha = (req, res) => {
     httpOnly: true,
     secure: isProduction,
     sameSite: isProduction ? "None" : "Lax",
-    ...(isProduction && { domain: "chat-app-frontend-ogk2.onrender.com" }), // ✅ your exact domain here
     path: "/",
     maxAge: 5 * 60 * 1000,
   });
 
-
   console.log("Generated CAPTCHA:", captcha.text);
-
-
-  res.type("svg");
-  res.status(200).send(captcha.data);
-
+  res.type("svg").status(200).send(captcha.data);
 };
