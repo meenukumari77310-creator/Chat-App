@@ -12,12 +12,14 @@ export const getCaptcha = (req, res) => {
 
   res.cookie("captcha", captcha.text, {
     httpOnly: true,
-    secure: isProduction, 
-    sameSite: isProduction ? "None" : "Lax",
+    secure: true,
+    sameSite: "None",
+    domain: "onrender.com",   // ✅ NOTE: remove the dot, Render requires this
     path: "/",
     maxAge: 5 * 60 * 1000,
   });
-   console.log("Generated CAPTCHA:", captcha.text);
+
+  console.log("Generated CAPTCHA:", captcha.text);
 
 
   res.type("svg");
