@@ -96,7 +96,7 @@ export const Register = () => {
       if (!email || !name) return toast.error("Enter your name and email first");
       try {
         await sendSignInLinkToEmail(auth, email, {
-          url: `https://chat-app-frontend-ogk2.onrender.com/#/finishSignIn?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`,
+          url: `https://chat-app-frontend-ogk2.onrender.com/finishSignIn?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`,
 
           handleCodeInApp: true,
         });

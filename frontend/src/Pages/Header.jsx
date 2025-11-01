@@ -114,7 +114,7 @@ const Header = () => {
                 }
                 onClick={async () => {
                   await fetchWithAuth(apis().logout, { method: "POST" });
-                  window.location.hash = "#/login";
+                  window.location.href = "/login";
                 }}
               >
                 🚪 Logout
@@ -133,7 +133,7 @@ const Header = () => {
                   await fetchWithAuth(apis().logoutAllDevices, {
                     method: "POST",
                   });
-                  window.location.hash = "#/login";
+                  window.location.href = "/login";
                 }}
               >
                 🔒 Logout All Devices
