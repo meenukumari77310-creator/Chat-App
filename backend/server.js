@@ -12,18 +12,17 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.set("trust proxy", 1);
 
-app.use(cookieParser());
 app.use(cors({
   origin: [
     "http://localhost:3000",
     "https://chat-app-frontend-ogk2.onrender.com"
   ],
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+  credentials: true
 }));
+
+app.use(cookieParser());
 
 
 app.use(express.json());
