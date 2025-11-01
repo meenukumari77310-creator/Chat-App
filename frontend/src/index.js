@@ -11,9 +11,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter basename="/">
+
       <Toaster position="top-right" />
       <App />
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>
 );
