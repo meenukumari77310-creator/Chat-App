@@ -12,12 +12,13 @@ export const getCaptcha = (req, res) => {
 
   res.cookie("captcha", captcha.text, {
     httpOnly: true,
-    secure: true,
-    sameSite: "None",
-    domain: "onrender.com",   // ✅ NOTE: remove the dot, Render requires this
+    secure: isProduction,
+    sameSite: isProduction ? "None" : "Lax",
+    ...(isProduction && { domain: "chat-app-frontend-ogk2.onrender.com" }), // ✅ your exact domain here
     path: "/",
     maxAge: 5 * 60 * 1000,
   });
+
 
   console.log("Generated CAPTCHA:", captcha.text);
 

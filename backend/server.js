@@ -13,6 +13,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+app.set("trust proxy", 1);
+
 app.use(cookieParser());
 app.use(cors({
   origin: [
@@ -22,7 +24,6 @@ app.use(cors({
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
 }));
-app.set("trust proxy", 1); // ✅ needed for secure cookies on Render
 
 
 app.use(express.json());
