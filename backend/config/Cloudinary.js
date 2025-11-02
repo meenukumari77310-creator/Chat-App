@@ -69,19 +69,19 @@ const makeUploader = (sizeLimit) =>
 const uploadChatFile = (req, res, next) => {
   const mimetype = req.headers["content-type"];
 
-  // Pick limit: 200 KB for images/docs/text, 2 MB for audio/video
   const smallTypes = ["image", "application", "text"];
   const largeTypes = ["audio", "video"];
 
   let uploader;
   if (mimetype && largeTypes.some((t) => mimetype.includes(t))) {
-    uploader = makeUploader(6 * 1024 * 1024).single("file"); // 2 MB
+    uploader = makeUploader(100 * 1024 * 1024).single("file"); // ✅ 100MB for video/audio
   } else {
-    uploader = makeUploader(5*1024 * 1024).single("file"); // 200 KB
+    uploader = makeUploader(20 * 1024 * 1024).single("file"); // ✅ 20MB for images/docs
   }
 
   uploader(req, res, next);
 };
+
 
 // Profile image storage
 const profileStorage = new CloudinaryStorage({
