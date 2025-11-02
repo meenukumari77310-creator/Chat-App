@@ -330,25 +330,11 @@ const ChatBox = ({
       {/* Header */}
       <div style={headerStyle}>
         <div style={{ display: "flex", alignItems: "center", gap: 15 }}>
-          <Avatar
-            name={
-              selectedChat?.customName ||
-              otherUser?.name ||
-              selectedChat?.chatName ||
-              "User"
-            }
-            src={
-              otherUser?.profileImage &&
-                otherUser.profileImage !== "null" &&
-                otherUser.profileImage !== "undefined" &&
-                otherUser.profileImage.trim() !== ""
-                ? otherUser.profileImage
-                : undefined // ✅ fallback to initials
-            }
-            size="45"
-            round={true}
+          <img
+            src={otherUser?.profileImage || "/group.png"}
+            alt="avatar"
+            style={avatarStyle}
           />
-
           <div>
             <div style={{ fontSize: "1.1rem", fontWeight: 600 }}>
               {selectedChat.customName ||
