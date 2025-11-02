@@ -54,7 +54,7 @@ const Sidebar = ({
       <div
         style={{
           flexShrink: 0,
-          height: 70, // 👈 match ChatBox
+          height: 70,
           padding: "0 20px",
           display: "flex",
           justifyContent: "space-between",
@@ -70,7 +70,30 @@ const Sidebar = ({
         }}
       >
         <span>Chats</span>
+
+        {/* ➕ Add Contact Icon */}
+        <button
+          onClick={() => setShowModal(true)}
+          style={{
+            background: "#8e44ad",
+            border: "none",
+            color: "white",
+            fontSize: "1.2rem",
+            borderRadius: "50%",
+            width: "36px",
+            height: "36px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+            boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+          }}
+          title="Add Contact"
+        >
+          +
+        </button>
       </div>
+
 
       {/* Contacts */}
       <div style={{ flex: 1, overflowY: "auto", padding: 10 }}>
