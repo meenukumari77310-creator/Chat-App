@@ -6,6 +6,7 @@ import { fetchWithAuth } from "../utils/fetchWithAuth";
 import AddContactModal from "./AddContactModal";
 import Avatar from "react-avatar";
 
+
 const Header = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
