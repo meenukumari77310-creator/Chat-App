@@ -3,8 +3,12 @@ import { apis } from "../utils/apis";
 
 const EditContactModal = ({ contact, onClose, onUpdated }) => {
   const [customName, setCustomName] = useState(contact.customName || "");
+  const [loading, setLoading] = useState(false);
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
     try {
       const res = await fetch(apis().editContact(contact._id), {
         method: "PUT",
@@ -12,61 +16,56 @@ const EditContactModal = ({ contact, onClose, onUpdated }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ customName }),
       });
-      if (!res.ok) throw new Error("Failed to update contact");
-      await onUpdated();
-      onClose();
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message);
+
+      onUpdated?.();
+      onClose?.();
     } catch (err) {
-      console.error(err);
-      alert("Failed to update contact");
+      alert(err.message || "Update failed");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div style={backdropStyle} onClick={onClose}>
-      <div style={modalStyle} onClick={(e) => e.stopPropagation()}>
-        <h5 style={{ marginBottom: "1rem" }}>Edit Contact</h5>
-        <input
-          type="text"
-          className="form-control mb-3"
-          value={customName}
-          onChange={(e) => setCustomName(e.target.value)}
-        />
-        <div
-          style={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}
-        >
-          <button className="btn btn-secondary" onClick={onClose}>
-            Cancel
-          </button>
-          <button className="btn btn-primary" onClick={handleUpdate}>
-            Save
-          </button>
+    <div className="modal" style={{ display: "block", background: "rgba(0,0,0,0.4)" }}>
+      <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-content">
+          <form onSubmit={handleUpdate}>
+            <div className="modal-header">
+              <h5 className="modal-title">Edit Contact</h5>
+              <button type="button" className="btn-close" onClick={onClose}></button>
+            </div>
+
+            <div className="modal-body">
+              <div className="mb-3">
+                <label className="form-label">Email (read-only)</label>
+                <input className="form-control" value={contact.user.email} disabled />
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">Custom Name</label>
+                <input
+                  className="form-control"
+                  value={customName}
+                  onChange={(e) => setCustomName(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" onClick={onClose}>Cancel</button>
+              <button type="submit" className="btn btn-primary" disabled={loading}>
+                {loading ? "Saving..." : "Save"}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   );
-};
-
-// ✅ Styles
-const backdropStyle = {
-  position: "fixed",
-  top: 0,
-  left: 0,
-  width: "100vw",
-  height: "100vh",
-  background: "rgba(0, 0, 0, 0.5)",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  zIndex: 1000,
-};
-
-const modalStyle = {
-  background: "#fff",
-  borderRadius: "12px",
-  padding: "20px",
-  width: "400px",
-  maxWidth: "90%",
-  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
 };
 
 export default EditContactModal;
